@@ -1,0 +1,62 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; background-color: #f5f7fb; color: #202124; }
+.app { min-height: 100vh; }
+.header { background: linear-gradient(135deg, #4285f4, #34a853); color: white; text-align: center; padding: 48px 20px; }
+.header h1 { margin: 0; font-size: 36px; }
+.header p { margin: 10px 0 0; font-size: 18px; }
+.subtitle { font-size: 16px; opacity: 0.9; }
+.main-content { max-width: 1100px; margin: 32px auto; padding: 0 20px; display: grid; gap: 24px; }
+.card { background-color: white; padding: 28px; border-radius: 18px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07); border-left: 6px solid #4285f4; }
+.card h2 { margin-top: 0; color: #4285f4; }
+.section-description { color: #5f6368; margin-bottom: 22px; }
+.summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.summary-card { background-color: white; border-radius: 18px; padding: 22px; text-align: center; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07); border-top: 6px solid #4285f4; }
+.summary-card h3 { margin: 0; font-size: 34px; color: #4285f4; }
+.summary-card p { margin: 8px 0 0; color: #5f6368; font-weight: bold; }
+.register-form { display: grid; gap: 18px; }
+.form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.form-group { display: grid; gap: 8px; }
+label { font-weight: bold; }
+input, select, textarea { padding: 12px; border: 1px solid #dadce0; border-radius: 10px; font-size: 16px; font-family: Arial, sans-serif; }
+textarea { resize: vertical; }
+input:focus, select:focus, textarea:focus { outline: 2px solid #4285f4; border-color: #4285f4; }
+.radio-group { display: flex; gap: 18px; flex-wrap: wrap; background-color: #f8f9fa; padding: 14px; border-radius: 12px; }
+.radio-group label, .checkbox-group label { display: flex; align-items: center; gap: 8px; font-weight: normal; }
+.checkbox-group { background-color: #f8f9fa; padding: 14px; border-radius: 12px; }
+.form-preview { background-color: #f8f9fa; padding: 18px; border-radius: 14px; border-left: 5px solid #34a853; }
+.form-preview h3 { margin-top: 0; color: #34a853; }
+.form-preview p { margin: 8px 0; }
+.button-group { display: flex; gap: 12px; flex-wrap: wrap; }
+button { background-color: #4285f4; color: white; border: none; padding: 11px 16px; border-radius: 10px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+button:hover { background-color: #3367d6; }
+button.secondary { background-color: #5f6368; }
+button.secondary:hover { background-color: #3c4043; }
+button.danger { background-color: #ea4335; }
+button.danger:hover { background-color: #c5221f; }
+.error-message { color: #a50e0e; background-color: #fce8e6; border: 1px solid #ea4335; border-radius: 8px; padding: 8px 10px; margin: 0; font-size: 14px; }
+.success-message { color: #137333; background-color: #e6f4ea; border: 1px solid #34a853; border-radius: 8px; padding: 12px; margin: 0 0 16px; font-weight: bold; }
+.empty-message { background-color: #f8f9fa; color: #5f6368; padding: 16px; border-radius: 12px; border: 1px dashed #dadce0; }
+.list-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.list-header h2 { margin: 0; color: #202124; }
+.register-list { display: grid; gap: 16px; }
+.register-item { background-color: #ffffff; border: 1px solid #e0e0e0; border-left: 6px solid #34a853; border-radius: 16px; padding: 20px; display: grid; gap: 14px; }
+.register-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.register-header h3 { margin: 0; color: #202124; }
+.register-detail { display: grid; gap: 6px; }
+.register-detail p { margin: 0; }
+.skill-badge { padding: 8px 12px; border-radius: 999px; font-size: 13px; font-weight: bold; }
+.beginner { background-color: #e8f0fe; color: #174ea6; }
+.intermediate { background-color: #fef7e0; color: #b06000; }
+.advanced { background-color: #fce8e6; color: #a50e0e; }
+.footer { background-color: #202124; color: white; text-align: center; padding: 24px 16px; }
+.footer p { margin: 6px 0; }
+@media (max-width: 900px) { .summary-grid { grid-template-columns: repeat(2, 1fr); } .form-grid { grid-template-columns: 1fr; } }
+@media (max-width: 600px) {
+  .header h1 { font-size: 28px; }
+  .main-content { margin: 20px auto; padding: 0 12px; }
+  .card { padding: 20px; }
+  .summary-grid { grid-template-columns: 1fr; }
+  .radio-group { flex-direction: column; }
+  .list-header, .register-header { align-items: flex-start; flex-direction: column; }
+  .button-group button, .list-header button { width: 100%; }
+}
