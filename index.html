@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <header>
     <h1>การพัฒนาเว็บแอปพลิเคชัน</h1>
     <p>รายวิชา 4123307 Web Application Development</p>
@@ -66,19 +65,29 @@
             <td>HTML, CSS และ JavaScript</td>
             <td>สร้างเว็บเพจพื้นฐาน</td>
           </tr>
+          <!-- เพิ่มเติม: สัปดาห์ที่ 4 และ 5 -->
+          <tr>
+            <td>4</td>
+            <td>Component และ Props ใน React</td>
+            <td>สร้าง UI แบบแยกส่วน</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>State และ Event Handling</td>
+            <td>สร้างเว็บโต้ตอบด้วย React</td>
+          </tr>
         </tbody>
       </table>
     </section>
 
     <section id="register">
       <h2>แบบฟอร์มลงทะเบียนความสนใจ</h2>
-
       <form id="interestForm">
         <label for="studentName">ชื่อ - สกุล</label>
         <input type="text" id="studentName" placeholder="กรอกชื่อ - สกุล">
 
-        <label for="studentId">รหัสนักศึกษา</label>
-        <input type="text" id="studentId" placeholder="กรอกรหัสนักศึกษา">
+        <label for="studentId">รหัสนักศึกษา (11 หลัก)</label>
+        <input type="text" id="studentId" placeholder="กรอกรหัสนักศึกษา 11 หลัก">
 
         <label for="interestTopic">หัวข้อที่สนใจ</label>
         <select id="interestTopic">
@@ -92,7 +101,6 @@
 
         <button type="submit">ส่งข้อมูล</button>
       </form>
-
       <div id="result"></div>
     </section>
   </main>

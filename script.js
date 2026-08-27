@@ -1,19 +1,26 @@
-const form = document.getElementById("interestForm")
-const result = document.getElementById("result")
+const form = document.getElementById("interestForm");
+const result = document.getElementById("result");
 
 form.addEventListener("submit", function(event) {
-  event.preventDefault()
+  event.preventDefault();
 
-  const studentName = document.getElementById("studentName").value.trim()
-  const studentId = document.getElementById("studentId").value.trim()
-  const interestTopic = document.getElementById("interestTopic").value
+  const studentName = document.getElementById("studentName").value.trim();
+  const studentId = document.getElementById("studentId").value.trim();
+  const interestTopic = document.getElementById("interestTopic").value;
 
-  result.className = ""
+  result.className = "";
 
   if (studentName === "" || studentId === "" || interestTopic === "") {
-    result.textContent = "กรุณากรอกข้อมูลให้ครบถ้วน"
-    result.classList.add("error")
-    return
+    result.textContent = "กรุณากรอกข้อมูลให้ครบถ้วน";
+    result.classList.add("error");
+    return;
+  }
+
+  // เพิ่มเติม: ตรวจสอบความยาวรหัสนักศึกษา 11 หลัก
+  if (studentId.length !== 11) {
+    result.textContent = "รหัสนักศึกษาต้องมีความยาว 11 หลัก";
+    result.classList.add("error");
+    return;
   }
 
   result.innerHTML = `
@@ -21,8 +28,7 @@ form.addEventListener("submit", function(event) {
     ชื่อ - สกุล: ${studentName}<br>
     รหัสนักศึกษา: ${studentId}<br>
     หัวข้อที่สนใจ: ${interestTopic}
-  `
-
-  result.classList.add("success")
-  form.reset()
-})
+  `;
+  result.classList.add("success");
+  form.reset();
+});

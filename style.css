@@ -1,4 +1,4 @@
-*{
+* {
   box-sizing: border-box;
 }
 
@@ -11,7 +11,7 @@ body {
 }
 
 header {
-  background: linear-gradient(135deg, #a8c7f9, #0081f3);
+  background: linear-gradient(135deg, #4285f4, #34a853);
   color: white;
   text-align: center;
   padding: 40px 20px;
@@ -40,6 +40,7 @@ nav a {
   text-decoration: none;
   margin: 0 12px;
   font-weight: bold;
+  transition: color 0.2s ease;
 }
 
 nav a:hover {
@@ -112,6 +113,7 @@ input, select {
   font-size: 16px;
 }
 
+/* เพิ่มเติม: Animation เมื่อ Hover ปุ่ม */
 button {
   background-color: #34a853;
   color: white;
@@ -120,10 +122,12 @@ button {
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 button:hover {
   background-color: #2c8d46;
+  transform: scale(1.02);
 }
 
 #result {
@@ -153,29 +157,25 @@ footer {
   color: white;
   padding: 20px;
 }
+
 @media (max-width: 768px) {
   header h1 {
     font-size: 28px;
   }
-
   nav a {
     display: block;
     margin: 8px 0;
   }
-
   main {
     margin: 20px auto;
     padding: 0 12px;
   }
-
   section {
     padding: 18px;
   }
-
   table {
     font-size: 14px;
   }
-
   th, td {
     padding: 8px;
   }
