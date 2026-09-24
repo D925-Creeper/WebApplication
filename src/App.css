@@ -1,0 +1,388 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: #4285f4;
+  --green: #34a853;
+  --yellow: #fbbc05;
+  --red: #ea4335;
+  --dark: #202124;
+  --gray: #5f6368;
+  --light: #f8f9fa;
+  --border: #dadce0;
+  --white: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f7fb;
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.header {
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  color: var(--white);
+  padding: 54px 20px;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.15;
+}
+
+.subtitle {
+  max-width: 760px;
+  margin: 16px auto 0;
+  font-size: 18px;
+  opacity: 0.95;
+}
+
+.main-content {
+  width: min(1100px, calc(100% - 32px));
+  margin: 32px auto;
+  display: grid;
+  gap: 24px;
+}
+
+.card,
+.api-info {
+  background-color: var(--white);
+  border-radius: 22px;
+  padding: 28px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+}
+
+.api-info {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.api-info article {
+  background-color: var(--light);
+  border-top: 6px solid var(--blue);
+  border-radius: 18px;
+  padding: 20px;
+}
+
+.api-info h3 {
+  margin: 0;
+  color: var(--blue);
+  font-size: 26px;
+}
+
+.api-info p {
+  margin: 8px 0 0;
+  color: var(--gray);
+}
+
+.section-heading {
+  margin-bottom: 20px;
+}
+
+.section-heading h2,
+.card h2 {
+  margin: 0;
+  color: var(--blue);
+}
+
+.section-heading p,
+.toolbar p {
+  margin: 8px 0 0;
+  color: var(--gray);
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+button {
+  background-color: var(--blue);
+  color: var(--white);
+  border: none;
+  padding: 11px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #3367d6;
+}
+
+button:disabled {
+  background-color: #c9cdd1;
+  cursor: not-allowed;
+}
+
+button.secondary {
+  background-color: var(--gray);
+}
+
+button.secondary:hover {
+  background-color: #3c4043;
+}
+
+button.danger {
+  background-color: var(--red);
+}
+
+button.danger:hover {
+  background-color: #c5221f;
+}
+
+.status-message {
+  padding: 14px 18px;
+  border-radius: 14px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-message.loading {
+  background-color: #e8f0fe;
+  color: #174ea6;
+  border: 1px solid var(--blue);
+}
+
+.status-message.success {
+  background-color: #e6f4ea;
+  color: #137333;
+  border: 1px solid var(--green);
+}
+
+.status-message.error {
+  background-color: #fce8e6;
+  color: #a50e0e;
+  border: 1px solid var(--red);
+}
+
+.status-message.info {
+  background-color: #fef7e0;
+  color: #b06000;
+  border: 1px solid var(--yellow);
+}
+
+.clear-msg-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+}
+
+.course-form {
+  display: grid;
+  gap: 18px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.form-group {
+  display: grid;
+  gap: 8px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  background-color: white;
+}
+
+input:focus,
+select:focus {
+  outline: 3px solid rgba(66, 133, 244, 0.25);
+  border-color: var(--blue);
+}
+
+.error-message,
+.empty-message {
+  padding: 14px;
+  border-radius: 12px;
+}
+
+.error-message {
+  color: #a50e0e;
+  background-color: #fce8e6;
+  border: 1px solid var(--red);
+}
+
+.empty-message {
+  background-color: var(--light);
+  color: var(--gray);
+  border: 1px dashed var(--border);
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.course-card {
+  border: 1px solid var(--border);
+  border-left: 6px solid var(--blue);
+  border-radius: 18px;
+  padding: 20px;
+  background-color: var(--white);
+  display: grid;
+  gap: 12px;
+}
+
+.course-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.course-code {
+  color: var(--blue);
+  font-weight: bold;
+}
+
+.source-badge {
+  background-color: #e8f0fe;
+  color: #174ea6;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.source-badge.axios,
+.source-badge.axios-post {
+  background-color: #e6f4ea;
+  color: #137333;
+}
+
+.source-badge.fetch,
+.source-badge.fetch-post {
+  background-color: #fef7e0;
+  color: #b06000;
+}
+
+.course-card h3 {
+  margin: 0;
+  color: var(--dark);
+}
+
+.english-name {
+  color: var(--gray);
+  font-style: italic;
+  margin: 0;
+}
+
+.course-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.course-meta span {
+  background-color: var(--light);
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.footer {
+  background-color: var(--dark);
+  color: var(--white);
+  text-align: center;
+  padding: 24px 16px;
+  margin-top: 40px;
+}
+
+.footer p {
+  margin: 6px 0;
+}
+
+@media (max-width: 980px) {
+  .api-info,
+  .course-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .main-content {
+    width: min(100% - 24px, 1100px);
+    margin: 24px auto;
+  }
+
+  .card,
+  .api-info {
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  .api-info,
+  .course-grid,
+  .form-grid,
+  .filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .course-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .button-group,
+  .button-group button,
+  .course-card button {
+    width: 100%;
+  }
+}
