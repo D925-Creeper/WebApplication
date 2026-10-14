@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SpaceFlow | ระบบ Wireframe Blueprint ต้นแบบ 4 หน้าจอ (Lab 15)</title>
+    <!-- Google Fonts: Prompt & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Prompt:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Prompt', 'Plus Jakarta Sans', 'sans-serif'],
+            },
+            colors: {
+              wireframe: {
+                bg: '#f8fafc',
+                card: '#ffffff',
+                border: '#cbd5e1',
+                accent: '#4f46e5',
+                dark: '#0f172a',
+                muted: '#94a3b8',
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: 'Prompt', 'Plus Jakarta Sans', sans-serif;
+      }
+      .blueprint-grid {
+        background-size: 20px 20px;
+        background-image: 
+          linear-gradient(to right, rgba(203, 213, 225, 0.3) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(203, 213, 225, 0.3) 1px, transparent 1px);
+      }
+      .wire-box {
+        border: 2px dashed #94a3b8;
+        background: rgba(241, 245, 249, 0.6);
+      }
+      .wire-img-placeholder {
+        background: repeating-linear-gradient(
+          -45deg,
+          #f1f5f9,
+          #f1f5f9 10px,
+          #e2e8f0 10px,
+          #e2e8f0 20px
+        );
+      }
+    </style>
+  </head>
+  <body class="bg-slate-100 text-slate-800 antialiased p-4 md:p-8">
+    <!-- Header Navigation & Controller -->
+    <header class="max-w-7xl mx-auto mb-8 bg-white border border-slate-300 rounded-3xl p-6 shadow-sm">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-3 py-1 rounded-full text-xs font-black bg-indigo-100 text-indigo-700 border border-indigo-200">
+              LAB 15: ตอนที่ 4.4 - 4.5
+            </span>
+            <span class="text-xs text-slate-500 font-bold">โครงงานพัฒนาเว็บแอปพลิเคชัน</span>
+          </div>
+          <h1 class="text-2xl font-black text-slate-900 mt-1">
+            SpaceFlow UI Wireframe Blueprint Studio
+          </h1>
+          <p class="text-xs text-slate-600 mt-0.5">
+            โครงสร้างการออกแบบส่วนต่อประสานผู้ใช้ 4 หน้าจอหลัก • โดย นายธนพัฒน์ ป้อมเย็น (68042380112)
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button
+            onclick="switchTab('dashboard')"
+            id="btn-dashboard"
+            class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-md transition"
+          >
+            1. Dashboard View
+          </button>
+          <button
+            onclick="switchTab('list')"
+            id="btn-list"
+            class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition"
+          >
+            2. List Page (Catalog)
+          </button>
+          <button
+            onclick="switchTab('form')"
+            id="btn-form"
+            class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition"
+          >
+            3. Form Page (Modal)
+          </button>
+          <button
+            onclick="switchTab('detail')"
+            id="btn-detail"
+            class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition"
+          >
+            4. Detail Page
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Wireframe Display Container -->
+    <main class="max-w-7xl mx-auto space-y-12">
+      <!-- 1. DASHBOARD WIREFRAME -->
+      <section id="view-dashboard" class="wireframe-view block">
+        <div class="bg-white border-2 border-slate-400 rounded-3xl p-6 sm:p-8 shadow-xl blueprint-grid relative">
+          <div class="flex justify-between items-center pb-4 mb-6 border-b-2 border-slate-300">
+            <div>
+              <span class="text-xs font-black tracking-widest text-indigo-600 uppercase">WIREFRAME 01</span>
+              <h2 class="text-xl font-black text-slate-900">หน้า Dashboard & ปฏิทินตารางเวลาสัปดาห์ (Home / Overview)</h2>
+            </div>
+            <span class="text-xs font-mono px-3 py-1 bg-slate-200 text-slate-700 rounded-lg font-bold">Path: / (Home)</span>
+          </div>
+
+          <!-- Mock Navbar -->
+          <div class="border-2 border-slate-300 rounded-2xl p-4 bg-white mb-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg wire-box flex items-center justify-center font-bold text-xs">LOGO</div>
+              <span class="font-extrabold text-sm">SpaceFlow</span>
+              <span class="text-[10px] px-2 py-0.5 rounded border border-slate-300 text-slate-600 font-bold">Campus Booking</span>
+            </div>
+            <div class="flex gap-2">
+              <span class="px-3 py-1 rounded-lg wire-box text-xs font-bold">สำรวจพื้นที่</span>
+              <span class="px-3 py-1 rounded-lg bg-indigo-100 text-indigo-800 text-xs font-black">ตารางเวลาสัปดาห์</span>
+              <span class="px-3 py-1 rounded-lg wire-box text-xs font-bold">การจองของฉัน [1]</span>
+              <span class="px-3 py-1 rounded-lg bg-slate-900 text-white text-xs font-bold">Role: นักศึกษา</span>
+            </div>
+          </div>
+
+          <!-- Stat Summary Cards Row -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="border-2 border-slate-300 rounded-2xl p-4 bg-slate-50">
+              <div class="text-[10px] font-bold text-slate-500 uppercase">พื้นที่ทั้งหมด</div>
+              <div class="text-2xl font-black text-slate-800 mt-1">4 ห้อง</div>
+              <div class="text-[10px] text-slate-500">สตูดิโอ & ห้องประชุม</div>
+            </div>
+            <div class="border-2 border-slate-300 rounded-2xl p-4 bg-emerald-50 border-emerald-200">
+              <div class="text-[10px] font-bold text-emerald-700 uppercase">พร้อมใช้งาน</div>
+              <div class="text-2xl font-black text-emerald-800 mt-1">3 ห้อง</div>
+              <div class="text-[10px] text-emerald-600 font-bold">เปิดรับคำขอจอง</div>
+            </div>
+            <div class="border-2 border-slate-300 rounded-2xl p-4 bg-amber-50 border-amber-200">
+              <div class="text-[10px] font-bold text-amber-700 uppercase">รอการอนุมัติ</div>
+              <div class="text-2xl font-black text-amber-800 mt-1">1 รายการ</div>
+              <div class="text-[10px] text-amber-600 font-bold">รอเจ้าหน้าที่ตรวจสอบ</div>
+            </div>
+            <div class="border-2 border-slate-300 rounded-2xl p-4 bg-purple-50 border-purple-200">
+              <div class="text-[10px] font-bold text-purple-700 uppercase">อนุมัติเรียบร้อย</div>
+              <div class="text-2xl font-black text-purple-800 mt-1">1 รายการ</div>
+              <div class="text-[10px] text-purple-600 font-bold">ยืนยันสิทธิ์สำเร็จ</div>
+            </div>
+          </div>
+
+          <!-- Weekly Timetable Matrix Component -->
+          <div class="border-2 border-slate-300 rounded-2xl p-5 bg-white space-y-4">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+              <div>
+                <h3 class="font-black text-base text-slate-800">📅 ปฏิทินตารางเวลาสัปดาห์ (Weekly Timetable Matrix)</h3>
+                <p class="text-xs text-slate-500">คลิกที่ช่องเวลาว่างเพื่อเปิดฟอร์มจองทันที</p>
+              </div>
+              <div class="flex gap-2">
+                <span class="px-3 py-1 rounded-lg bg-indigo-600 text-white text-xs font-bold">Studio 101</span>
+                <span class="px-3 py-1 rounded-lg wire-box text-xs font-bold">Meeting Lounge</span>
+                <span class="px-3 py-1 rounded-lg wire-box text-xs font-bold">Esports Arena</span>
+              </div>
+            </div>
+
+            <!-- Matrix Table -->
+            <div class="overflow-x-auto border-2 border-slate-200 rounded-xl">
+              <table class="w-full text-center text-xs">
+                <thead class="bg-slate-100 border-b-2 border-slate-200">
+                  <tr>
+                    <th class="p-3 text-left font-extrabold w-32 border-r border-slate-200">ช่วงเวลา</th>
+                    <th class="p-2 font-bold border-r border-slate-200">จ. 12/10</th>
+                    <th class="p-2 font-bold border-r border-slate-200">อ. 13/10</th>
+                    <th class="p-2 font-bold border-r border-slate-200">พ. 14/10</th>
+                    <th class="p-2 font-bold border-r border-slate-200">พฤ. 15/10</th>
+                    <th class="p-2 font-bold border-r border-slate-200">ศ. 16/10</th>
+                    <th class="p-2 font-bold">ส. 17/10</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y border-slate-200">
+                  <tr>
+                    <td class="p-2.5 text-left font-bold bg-slate-50 border-r border-slate-200">08:30 - 10:30</td>
+                    <td class="p-1.5 border-r border-slate-200"><div class="wire-box rounded-lg py-2 text-indigo-700 font-bold">+ ว่าง</div></td>
+                    <td class="p-1.5 border-r border-slate-200"><div class="wire-box rounded-lg py-2 text-indigo-700 font-bold">+ ว่าง</div></td>
+                    <td class="p-1.5 border-r border-slate-200"><div class="wire-box rounded-lg py-2 text-indigo-700 font-bold">+ ว่าง</div></td>
+                    <td class="p-1.5 border-r border-slate-200"><div class="wire-box rounded-lg py-2 text-indigo-700 font-bold">+ ว่าง</div></td>
+                    <td class="p-1.5 border-r border-slate-200"><div class="wire-box rounded-lg py-2 text-indigo-700 font-bold">+ ว่าง</div></td>
+                    <td class="p-1.5"><div class="wire-box rounded-lg py-2 text-indigo-700 font-bold">+ ว่าง</div></td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 text-left font-bold bg-slate-50 border-r border-slate-200">10:30 - 12:30</td>
+                    <td class="p-1.5 border-r border-slate-200">
+                      <div class="bg-emerald-100 border border-emerald-300 rounded-lg p-1.5 text-left text-[10px]">
+                        <div class="font-extrabold text-emerald-900 truncate">ธนพัฒน์ ป้อมเย็น</div>
+                        <span class="text-emerald-700 font-bold">[อนุมัติแล้ว]</span>
+                      </div>
+                    </td>
+                    <td class="p-1.5 border-r border-slate-200"><div class="wire-box rounded-lg py-2 text-indigo-700 font-bold">+ ว่าง</div></td>
+                    <td class="p-1.5 border-r border-slate-200"><div class="wire-box rounded-lg py-2 text-indigo-700 font-bold">+ ว่าง</div></td>
+                    <td class="p-1.5 border-r border-slate-200"><div class="wire-box rounded-lg py-2 text-indigo-700 font-bold">+ ว่าง</div></td>
+                    <td class="p-1.5 border-r border-slate-200"><div class="wire-box rounded-lg py-2 text-indigo-700 font-bold">+ ว่าง</div></td>
+                    <td class="p-1.5"><div class="wire-box rounded-lg py-2 text-indigo-700 font-bold">+ ว่าง</div></td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 text-left font-bold bg-slate-50 border-r border-slate-200">13:00 - 15:00</td>
+                    <td class="p-1.5 border-r border-slate-200"><div class="wire-box rounded-lg py-2 text-indigo-700 font-bold">+ ว่าง</div></td>
+                    <td class="p-1.5 border-r border-slate-200">
+                      <div class="bg-amber-100 border border-amber-300 rounded-lg p-1.5 text-left text-[10px]">
+                        <div class="font-extrabold text-amber-900 truncate">สมศรี ใจมั่น</div>
+                        <span class="text-amber-700 font-bold">[รออนุมัติ]</span>
+                      </div>
+                    </td>
+                    <td class="p-1.5 border-r border-slate-200"><div class="wire-box rounded-lg py-2 text-indigo-700 font-bold">+ ว่าง</div></td>
+                    <td class="p-1.5 border-r border-slate-200"><div class="wire-box rounded-lg py-2 text-indigo-700 font-bold">+ ว่าง</div></td>
+                    <td class="p-1.5 border-r border-slate-200"><div class="wire-box rounded-lg py-2 text-indigo-700 font-bold">+ ว่าง</div></td>
+                    <td class="p-1.5"><div class="wire-box rounded-lg py-2 text-indigo-700 font-bold">+ ว่าง</div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. LIST PAGE WIREFRAME -->
+      <section id="view-list" class="wireframe-view hidden">
+        <div class="bg-white border-2 border-slate-400 rounded-3xl p-6 sm:p-8 shadow-xl blueprint-grid relative">
+          <div class="flex justify-between items-center pb-4 mb-6 border-b-2 border-slate-300">
+            <div>
+              <span class="text-xs font-black tracking-widest text-indigo-600 uppercase">WIREFRAME 02</span>
+              <h2 class="text-xl font-black text-slate-900">หน้าแสดงรายการห้อง & สำรวจพื้นที่ (List Page / Catalog)</h2>
+            </div>
+            <span class="text-xs font-mono px-3 py-1 bg-slate-200 text-slate-700 rounded-lg font-bold">Path: /rooms (หรือ Tab: Explore)</span>
+          </div>
+
+          <!-- Search & Filter Controls -->
+          <div class="border-2 border-slate-300 rounded-2xl p-4 bg-white mb-6 space-y-3">
+            <div class="flex flex-col md:flex-row justify-between gap-3">
+              <div class="wire-box rounded-xl px-4 py-2 flex items-center gap-2 flex-1">
+                <span class="text-xs font-bold text-slate-500">🔍 ค้นหา: [พิมพ์ชื่อห้อง, สตูดิโอ หรืออาคาร...]</span>
+              </div>
+              <div class="flex gap-1.5 overflow-x-auto">
+                <span class="px-3 py-1.5 rounded-xl bg-indigo-600 text-white text-xs font-bold">ทั้งหมด</span>
+                <span class="px-3 py-1.5 rounded-xl wire-box text-xs font-bold">Studio</span>
+                <span class="px-3 py-1.5 rounded-xl wire-box text-xs font-bold">Meeting</span>
+                <span class="px-3 py-1.5 rounded-xl wire-box text-xs font-bold">Esports</span>
+                <span class="px-3 py-1.5 rounded-xl wire-box text-xs font-bold">Focus Pod</span>
+              </div>
+            </div>
+            <div class="flex gap-4 text-xs font-bold text-slate-600 pt-2 border-t border-slate-200">
+              <span>เลือกอาคาร: [Dropdown: ทุกอาคาร ▼]</span>
+              <span>ความจุขั้นต่ำ: [Dropdown: ทั้งหมด ▼]</span>
+              <span class="ml-auto text-slate-500">แสดง 4 จาก 4 ห้อง</span>
+            </div>
+          </div>
+
+          <!-- Room Cards Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="border-2 border-slate-300 rounded-2xl p-4 bg-white space-y-3">
+              <div class="h-36 rounded-xl wire-img-placeholder border border-slate-300 flex items-center justify-center font-bold text-xs text-slate-600">
+                [ภาพสตูดิโอ 101: 1200x800]
+              </div>
+              <div class="flex justify-between items-start">
+                <div>
+                  <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-700">Studio</span>
+                  <h4 class="font-extrabold text-sm text-slate-800 mt-1">Studio 101: บันทึกเสียง & พอดแคสต์</h4>
+                </div>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">● พร้อมใช้</span>
+              </div>
+              <div class="text-xs text-slate-500 space-y-1">
+                <div>📍 อาคาร 4 คณะวิทยาศาสตร์ • สูงสุด 6 คน</div>
+                <div>⚡ ไมค์ Shure SM7B x4, ซาวด์การ์ด, แผ่นซับเสียง</div>
+              </div>
+              <div class="pt-2 flex gap-2">
+                <span class="flex-1 py-2 text-center rounded-xl wire-box text-xs font-bold">ดูสเปกเต็ม</span>
+                <span class="flex-1 py-2 text-center rounded-xl bg-indigo-600 text-white text-xs font-black">จองห้องนี้ →</span>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="border-2 border-slate-300 rounded-2xl p-4 bg-white space-y-3">
+              <div class="h-36 rounded-xl wire-img-placeholder border border-slate-300 flex items-center justify-center font-bold text-xs text-slate-600">
+                [ภาพห้องประชุม Co-Meeting: 1200x800]
+              </div>
+              <div class="flex justify-between items-start">
+                <div>
+                  <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-700">Meeting</span>
+                  <h4 class="font-extrabold text-sm text-slate-800 mt-1">Co-Meeting Lounge A</h4>
+                </div>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">● พร้อมใช้</span>
+              </div>
+              <div class="text-xs text-slate-500 space-y-1">
+                <div>📍 อาคารวิทยบริการ ชั้น 3 • สูงสุด 12 คน</div>
+                <div>⚡ จอ Smart TV 75", ไวท์บอร์ด, กล้อง 4K</div>
+              </div>
+              <div class="pt-2 flex gap-2">
+                <span class="flex-1 py-2 text-center rounded-xl wire-box text-xs font-bold">ดูสเปกเต็ม</span>
+                <span class="flex-1 py-2 text-center rounded-xl bg-indigo-600 text-white text-xs font-black">จองห้องนี้ →</span>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="border-2 border-slate-300 rounded-2xl p-4 bg-white space-y-3">
+              <div class="h-36 rounded-xl wire-img-placeholder border border-slate-300 flex items-center justify-center font-bold text-xs text-slate-600">
+                [ภาพห้องซ้อม Esports: 1200x800]
+              </div>
+              <div class="flex justify-between items-start">
+                <div>
+                  <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-700">Esports</span>
+                  <h4 class="font-extrabold text-sm text-slate-800 mt-1">Esports & Live Streaming Arena</h4>
+                </div>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">● พร้อมใช้</span>
+              </div>
+              <div class="text-xs text-slate-500 space-y-1">
+                <div>📍 ศูนย์คอมพิวเตอร์ ชั้น 4 • สูงสุด 8 คน</div>
+                <div>⚡ PC RTX 4080 Super x8, จอ 240Hz, ไฟสตูดิโอ</div>
+              </div>
+              <div class="pt-2 flex gap-2">
+                <span class="flex-1 py-2 text-center rounded-xl wire-box text-xs font-bold">ดูสเปกเต็ม</span>
+                <span class="flex-1 py-2 text-center rounded-xl bg-indigo-600 text-white text-xs font-black">จองห้องนี้ →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. FORM PAGE / MODAL WIREFRAME -->
+      <section id="view-form" class="wireframe-view hidden">
+        <div class="bg-white border-2 border-slate-400 rounded-3xl p-6 sm:p-8 shadow-xl blueprint-grid relative">
+          <div class="flex justify-between items-center pb-4 mb-6 border-b-2 border-slate-300">
+            <div>
+              <span class="text-xs font-black tracking-widest text-indigo-600 uppercase">WIREFRAME 03</span>
+              <h2 class="text-xl font-black text-slate-900">หน้าต่างฟอร์มบันทึกการจอง (Form Page / Booking Wizard Modal)</h2>
+            </div>
+            <span class="text-xs font-mono px-3 py-1 bg-slate-200 text-slate-700 rounded-lg font-bold">Component: BookingWizardModal</span>
+          </div>
+
+          <!-- Dialog Mockup Container -->
+          <div class="max-w-xl mx-auto border-2 border-slate-800 rounded-3xl bg-white shadow-2xl overflow-hidden">
+            <!-- Modal Header -->
+            <div class="bg-slate-900 text-white p-5">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-black text-amber-400">ขั้นตอนที่ 1 จาก 3: เลือกวันเวลา</span>
+                <span class="text-xs text-slate-400">[ ปุ่มปิด ✕ ]</span>
+              </div>
+              <h3 class="text-base font-black mt-1">Studio 101: สตูดิโอบันทึกเสียง</h3>
+              <p class="text-[11px] text-slate-300">อาคาร 4 คณะวิทยาศาสตร์ (ชั้น 2)</p>
+            </div>
+
+            <!-- Form Content -->
+            <div class="p-6 space-y-4 text-xs">
+              <div>
+                <label class="block font-black text-slate-700 mb-1">1. เลือกวันที่ต้องการใช้งาน *</label>
+                <div class="wire-box rounded-xl p-2.5 font-bold">[ Input Date Picker: 2026-10-14 📅 ]</div>
+              </div>
+
+              <div>
+                <label class="block font-black text-slate-700 mb-1">2. เลือกช่วงเวลาการใช้งาน (ระบบตรวจเวลาชนกันอัตโนมัติ) *</label>
+                <div class="grid grid-cols-2 gap-2">
+                  <div class="border-2 border-indigo-600 bg-indigo-50 rounded-xl p-2.5 font-bold flex justify-between items-center">
+                    <span>⏰ 08:30 - 10:30</span>
+                    <span class="text-[10px] font-black text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">ว่าง</span>
+                  </div>
+                  <div class="border border-slate-300 rounded-xl p-2.5 font-bold flex justify-between items-center">
+                    <span>⏰ 10:30 - 12:30</span>
+                    <span class="text-[10px] font-black text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">ว่าง</span>
+                  </div>
+                  <div class="border border-slate-200 bg-slate-100 text-slate-400 rounded-xl p-2.5 font-bold flex justify-between items-center opacity-60">
+                    <span class="line-through">⏰ 13:00 - 15:00</span>
+                    <span class="text-[10px] font-black text-rose-700 bg-rose-100 px-2 py-0.5 rounded">เต็มแล้ว</span>
+                  </div>
+                  <div class="border border-slate-300 rounded-xl p-2.5 font-bold flex justify-between items-center">
+                    <span>⏰ 15:00 - 17:00</span>
+                    <span class="text-[10px] font-black text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">ว่าง</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3 pt-2">
+                <div>
+                  <label class="block font-bold text-slate-700 mb-1">รหัสนักศึกษา *</label>
+                  <div class="wire-box rounded-xl p-2.5 font-bold">68042380112</div>
+                </div>
+                <div>
+                  <label class="block font-bold text-slate-700 mb-1">ชื่อ-นามสกุล *</label>
+                  <div class="wire-box rounded-xl p-2.5 font-bold">ธนพัฒน์ ป้อมเย็น</div>
+                </div>
+              </div>
+
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">วัตถุประสงค์การใช้งาน *</label>
+                <div class="wire-box rounded-xl p-2.5 font-medium h-16 text-slate-500">
+                  [Textarea: ซ้อมนำเสนอโครงงาน Web Application Lab 15 Final...]
+                </div>
+                <div class="flex gap-1.5 mt-2">
+                  <span class="text-[10px] px-2 py-0.5 rounded bg-slate-200 font-bold">+ ซ้อม Lab 15 Final</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded bg-slate-200 font-bold">+ ตัดต่อพอดแคสต์</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 bg-slate-50 border-t border-slate-200 flex justify-between items-center">
+              <span class="px-4 py-2 rounded-xl wire-box text-xs font-bold">ย้อนกลับ</span>
+              <span class="px-6 py-2.5 rounded-xl bg-indigo-600 text-white text-xs font-black shadow-md">
+                ถัดไป: สรุปและยืนยันการจอง →
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. DETAIL PAGE WIREFRAME -->
+      <section id="view-detail" class="wireframe-view hidden">
+        <div class="bg-white border-2 border-slate-400 rounded-3xl p-6 sm:p-8 shadow-xl blueprint-grid relative">
+          <div class="flex justify-between items-center pb-4 mb-6 border-b-2 border-slate-300">
+            <div>
+              <span class="text-xs font-black tracking-widest text-indigo-600 uppercase">WIREFRAME 04</span>
+              <h2 class="text-xl font-black text-slate-900">หน้ารายละเอียดห้องและสเปกอุปกรณ์ (Detail Page / Spec Drawer)</h2>
+            </div>
+            <span class="text-xs font-mono px-3 py-1 bg-slate-200 text-slate-700 rounded-lg font-bold">Component: RoomDetailModal</span>
+          </div>
+
+          <!-- Detail Container -->
+          <div class="max-w-2xl mx-auto border-2 border-slate-300 rounded-3xl bg-white overflow-hidden shadow-lg space-y-5">
+            <!-- Hero Banner -->
+            <div class="h-48 wire-img-placeholder relative p-6 flex flex-col justify-end text-white border-b-2 border-slate-300">
+              <div class="absolute inset-0 bg-slate-900/60" />
+              <div class="relative z-10">
+                <span class="text-xs font-black px-2.5 py-1 rounded bg-indigo-600 uppercase">Studio</span>
+                <h3 class="text-2xl font-black mt-1">Studio 101: สตูดิโอบันทึกเสียง & พอดแคสต์</h3>
+                <p class="text-xs text-slate-200">อาคาร 4 คณะวิทยาศาสตร์ • ชั้น 2 (ห้อง 4201)</p>
+              </div>
+            </div>
+
+            <div class="p-6 space-y-6 text-xs">
+              <!-- Tabs Navigation -->
+              <div class="flex border-b border-slate-200 font-bold gap-6 pb-2 text-slate-600">
+                <span class="text-indigo-600 border-b-2 border-indigo-600 pb-2">ข้อมูลทั่วไป & สเปก</span>
+                <span>อุปกรณ์ประจำห้อง (5)</span>
+                <span>กฎระเบียบข้อปฏิบัติ</span>
+              </div>
+
+              <!-- Quick Stats Grid -->
+              <div class="grid grid-cols-3 gap-3">
+                <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 text-center">
+                  <div class="text-[10px] text-slate-400 font-bold">ความจุสูงสุด</div>
+                  <div class="text-base font-black text-slate-800 mt-0.5">6 คน</div>
+                </div>
+                <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 text-center">
+                  <div class="text-[10px] text-slate-400 font-bold">คะแนนรีวิว</div>
+                  <div class="text-base font-black text-amber-500 mt-0.5">★ 4.9 / 5.0</div>
+                </div>
+                <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 text-center">
+                  <div class="text-[10px] text-slate-400 font-bold">ประวัติการใช้</div>
+                  <div class="text-base font-black text-indigo-600 mt-0.5">38+ ครั้ง</div>
+                </div>
+              </div>
+
+              <!-- Amenities List -->
+              <div>
+                <h4 class="font-black text-sm text-slate-800 mb-2">⚡ รายการอุปกรณ์และสเปกเฉพาะทาง</h4>
+                <div class="grid grid-cols-2 gap-2">
+                  <div class="p-2.5 rounded-xl wire-box font-medium flex items-center gap-2">
+                    <span class="text-emerald-600 font-bold">✓</span> ไมโครโฟน Shure SM7B x4
+                  </div>
+                  <div class="p-2.5 rounded-xl wire-box font-medium flex items-center gap-2">
+                    <span class="text-emerald-600 font-bold">✓</span> Audio Interface 18i20
+                  </div>
+                  <div class="p-2.5 rounded-xl wire-box font-medium flex items-center gap-2">
+                    <span class="text-emerald-600 font-bold">✓</span> แผ่นซับเสียง Acoustic Foam
+                  </div>
+                  <div class="p-2.5 rounded-xl wire-box font-medium flex items-center gap-2">
+                    <span class="text-emerald-600 font-bold">✓</span> ไฟสตูดิโอ LED Nanlite
+                  </div>
+                </div>
+              </div>
+
+              <!-- Footer CTA -->
+              <div class="pt-4 border-t border-slate-200 flex justify-between items-center">
+                <span class="px-4 py-2.5 rounded-xl wire-box font-bold">ปิดหน้าต่าง</span>
+                <span class="px-6 py-2.5 rounded-xl bg-indigo-600 text-white font-black shadow-lg">
+                  จองห้องนี้ทันที ➔
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Instruction & Copy Text for Word Lab 15 -->
+      <footer class="bg-white border-2 border-indigo-200 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4">
+        <div class="flex items-center gap-2">
+          <span class="p-2 rounded-xl bg-indigo-100 text-indigo-700 font-black text-xs">คู่มือสรุป</span>
+          <h3 class="text-lg font-black text-slate-900">
+            เนื้อหาสำหรับนำไปใส่ในเล่ม Word หัวข้อ 4.4 และ 4.5
+          </h3>
+        </div>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          สามารถใช้เครื่องมือ <strong>Snipping Tool (Win + Shift + S)</strong> แคปภาพ Wireframe 4 กรอบด้านบนเพื่อนำไปวางลงในช่องตาราง 4.5 ในไฟล์ Word ได้ทันที หรือคัดลอกข้อความสรุปทางเทคนิคด้านล่างนี้
+        </p>
+      </footer>
+    </main>
+
+    <!-- Tab Switching Script -->
+    <script>
+      function switchTab(tabName) {
+        document.querySelectorAll('.wireframe-view').forEach((el) => {
+          el.classList.add('hidden');
+          el.classList.remove('block');
+        });
+        document.querySelectorAll('.tab-btn').forEach((btn) => {
+          btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-md');
+          btn.classList.add('bg-slate-100', 'text-slate-700');
+        });
+
+        const activeView = document.getElementById('view-' + tabName);
+        if (activeView) {
+          activeView.classList.remove('hidden');
+          activeView.classList.add('block');
+        }
+
+        const activeBtn = document.getElementById('btn-' + tabName);
+        if (activeBtn) {
+          activeBtn.classList.remove('bg-slate-100', 'text-slate-700');
+          activeBtn.classList.add('bg-indigo-600', 'text-white', 'shadow-md');
+        }
+      }
+    </script>
+  </body>
+</html>
